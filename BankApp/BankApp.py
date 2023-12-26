@@ -348,8 +348,7 @@ class Customer:
         - None
         """
         # Display the current account balance
-        print(f"\nYour current balance is: $ {
-              self.__account.getAccountBalance()}")
+        print(f"\nYour current balance is: $ {self.__account.getAccountBalance()}")
 
         # Prompt for the withdrawal amount
         amount = eval(input("\nEnter Amount to be withdrawn: $ "))
@@ -408,8 +407,7 @@ class Customer:
         """
 
         # Display current balance
-        print(f"\nYour current balance is: $ {
-              self.__account.getAccountBalance()}")
+        print(f"\nYour current balance is: $ {self.__account.getAccountBalance()}")
 
         # Prompt for deposit amount
         amount = eval(input("\nEnter Amount to be deposited: $ "))
@@ -460,8 +458,7 @@ class Customer:
 
         # Display current balance
         print(
-            f"\nYour current balance is ${
-                self.__account.getAccountBalance()}")
+            f"\nYour current balance is ${self.__account.getAccountBalance()}")
 
         # Prompt for recipient username
         recipientName = input("\nEnter recipient username: ")
@@ -469,7 +466,13 @@ class Customer:
         tries = 0
         # Try to find recipient in the system
         while tries < 3:
-            if os.path.isfile(recipientName + '.dat'):
+            if recipientName == self.__username:
+                print(f"Invalid request. Can't send to self.")
+                recipientName = input("\nEnter a valid recipient username: ")
+                if tries == 2:
+                    print("\nWe are sorry, can't send to self. Bye...")
+                    exit(0)
+            elif os.path.isfile(recipientName + '.dat'):
                 break
             else:
                 print(f"\nUser {recipientName} not found")
@@ -523,17 +526,28 @@ class Customer:
             dump(recipient, fileHandler)
 
         # Prepare transaction details for receipt
+        # transactionDetails = {
+        #     'Amount': amount,
+        #     'Transaction Type': 'Online Transfer',
+        #     'Transaction Description': transactionDescription}
+
+        # Generate and print receipt for sender
         transactionDetails = {
             'Amount': amount,
-            'Transaction Type': 'Online Transfer',
+            'Transaction Type': 'Online Transfer - Debit',
             'Transaction Description': transactionDescription}
-
-        # Generate receipt
         receipt = generateReceipt(**transactionDetails)
         print(receipt)
 
         # Write receipt to sender's file
         writeReceipt(receipt, self.__username + '.txt')
+
+        # Generate receipt for reciever
+        transactionDetails = {
+            'Amount': amount,
+            'Transaction Type': 'Online Transfer - Credit',
+            'Transaction Description': transactionDescription}
+        receipt = generateReceipt(**transactionDetails)
 
         # Write receipt to recipient's file
         writeReceipt(receipt, recipientName + '.txt')
@@ -552,8 +566,7 @@ class Customer:
         - None
         """
         # Display current balance
-        print(f"\nYour current balance is: ${
-              self.__account.getAccountBalance()}")
+        print(f"\nYour current balance is: ${self.__account.getAccountBalance()}")
 
         # Display network options
         print("\n1. MTN\t\t\t2. AIRTEL\t\t\t3. GLO")
@@ -724,8 +737,7 @@ class Customer:
         sleep(3)
 
         # Retrieves and prints the current balance
-        print(f"\n\nYour current balance is ${
-              self.__account.getAccountBalance()}")
+        print(f"\n\nYour current balance is ${self.__account.getAccountBalance()}")
 
         return
 
@@ -887,8 +899,7 @@ def openAccount():
     with open(transactionDetailsFilePath, 'w') as fileHandler:
         pass
 
-    print(f"\n\t\tCongrats {customer.getCustomerName()
-                            }\n\t\tYour Account has been created successfully!\n")
+    print(f"\n\t\tCongrats {customer.getCustomerName()}\n\t\tYour Account has been created successfully!\n")
 
     print("\nRedirecting to the login page...", end='')
     sleep(3)
