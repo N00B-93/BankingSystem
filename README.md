@@ -2,8 +2,7 @@
 
 Welcome to the BankingSystem project! This is a comprehensive banking system designed to provide users with a secure and efficient way to manage their finances.
 
-![BankingSystem](https://stock.adobe.com/ng/images/build-bank/61062796)
-
+![BankingSystem](https://aptantech.com/wp-content/uploads/2021/07/Bank-Image-2.jpg)
 ## Table of Contents
 
 - [Introduction](#introduction)
