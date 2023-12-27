@@ -2,7 +2,7 @@
 
 Welcome to the BankingSystem project! This is a comprehensive banking system designed to provide users with a secure and efficient way to manage their finances.
 
-![BankingSystem](https://stock.adobe.com/ng/images/build-bank/61062796)
+![BankingSystem]https://stock.adobe.com/ng/images/build-bank/61062796
 
 ## Table of Contents
 
