@@ -35,6 +35,7 @@ To install `pwinput`, use the following command:
 
 ```bash
 pip install pwinput
+```
 
 
 ## Getting Started
