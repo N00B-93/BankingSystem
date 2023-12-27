@@ -2,8 +2,8 @@
 
 Welcome to the BankingSystem project! This is a comprehensive banking system designed to provide users with a secure and efficient way to manage their finances.
 
-![BankingSystem]https://stock.adobe.com/ng/images/build-bank/61062796
-
+![BankingSystem] (
+https://www.freepik.com/free-vector/bank-building-with-cityscape_13187569.htm#query=bank)&position=3&from_view=keyword&track=sph&uuid=c67b715d-9764-4b8b-a302-a30bfbf7e3a9
 ## Table of Contents
 
 - [Introduction](#introduction)
