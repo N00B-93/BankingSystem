@@ -30,7 +30,7 @@ The BankingSystem project aims to offer a full-fledged banking experience by pro
 The BankingSystem project relies on the following dependencies:
 
 - [Dependency 1](https://www.python.org/downloads/release/python-3120/) - Python Interpreter 3.12.0
-- [Dependency 2](https://pypi.org/project/pwinput/) - A cross-platform Python module that displays **** for password input. Works on Windows, unlike getpass. Formerly called stdiomask.
+- [Dependency 2](https://pypi.org/project/pwinput/) - pwinput: A cross-platform Python module that displays **** for password input. Works on Windows, unlike getpass. Formerly called stdiomask.
 
 
 ## Getting Started
