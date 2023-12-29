@@ -430,7 +430,8 @@ class Customer:
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Cash Deposit',
-            'Transaction Description': transactionDescription}
+            'Transaction Description': transactionDescription
+        }
 
         # Generate receipt
         receipt = generateReceipt(**transactionDetails)
@@ -535,7 +536,8 @@ class Customer:
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Online Transfer - Debit',
-            'Transaction Description': transactionDescription}
+            'Transaction Description': transactionDescription
+         }
         receipt = generateReceipt(**transactionDetails)
         print(receipt)
 
@@ -614,7 +616,8 @@ class Customer:
             'Amount': amount,
             'Transaction Type': 'Airtime Purchase',
             'Network': network,
-            'Phone Number': phoneNumber}
+            'Phone Number': phoneNumber
+         }
 
         # Generate receipt
         receipt = generateReceipt(**transactionDetails)
@@ -740,6 +743,15 @@ class Customer:
         print(f"\n\nYour current balance is ${self.__account.getAccountBalance()}")
 
         return
+
+
+def deductBankCharges(amount):
+    if amount < 5000:
+        return 10.0
+    elif 5001 <= amount <= 50000:
+        return 26.00
+    else:
+        return 50.00
 
 
 def generateReceipt(**kwargs):
@@ -921,17 +933,20 @@ def login():
 
     print("\n\n\t\tLogin to your Account.")
     tries = 0
+    try:
+        username = input("\nUsername: ")
 
-    username = input("\nUsername: ")
+        # Read usernames and passwords from their respective files
+        fileHandler1 = open("usernames.txt")
+        usernames = fileHandler1.readlines()
 
-    # Read usernames and passwords from their respective files
-    fileHandler1 = open("usernames.txt")
-    usernames = fileHandler1.readlines()
+        password = pwinput("\nPassword: ", '*')
 
-    password = pwinput("\nPassword: ", '*')
-
-    fileHandler2 = open("passwords.txt")
-    passwords = fileHandler2.readlines()
+        fileHandler2 = open("passwords.txt")
+        passwords = fileHandler2.readlines()
+    except IOError:
+        print("\nOpen an Account First then login!")
+        exit(0)
 
     while True:
         # Validate user credentials
