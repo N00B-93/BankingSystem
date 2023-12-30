@@ -328,7 +328,8 @@ class Customer:
         """
         return (
             f"\n\nFirst Name: {self.getCustomerFirstName()}\n\nLast Name: {self.getCustomerLastName()}\n\nFull Name: "
-            f"{self.getCustomerName()}\n\nAge: {self.getCustomerAge()}\n\nSex: {self.getCustomerSex()}\n\nState Of Origin: "
+            f"{self.getCustomerName()}\n\nAge: {self.getCustomerAge()}\n\nSex: {self.getCustomerSex()}\n\nState Of "
+            f"Origin:"
             f"{self.getCustomerStateOfOrigin()}\n\nNationality: {self.getCustomerNationality()}\n\nOccupation: "
             f"{self.getCustomerOccupation()}\n\nEmail: {self.getCustomerEmail()}\n\nPhone Number: "
             f"{self.getCustomerPhoneNumber()}\n\nNext Of Kin Full Name: "
@@ -372,7 +373,7 @@ class Customer:
         self.__account.setAccountBalance(
             self.__account.getAccountBalance() - amount)
 
-        # Display successful withdrawal message
+        # Display a successful withdrawal message
         print(f"\n\n$ {amount} successfully withdrawn!")
 
         # Create transaction details for the receipt
@@ -542,7 +543,7 @@ class Customer:
         # Write receipt to sender's file
         writeReceipt(receipt, self.__username + '.txt')
 
-        # Generate receipt for reciever
+        # Generate receipt for receiver
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Online Transfer - Credit',
@@ -558,9 +559,11 @@ class Customer:
         """
         Initiates the purchase of airtime for a selected mobile network.
 
-        Displays current account balance, prompts the user to select a network, and specifies the amount to be purchased.
+        Displays current account balance, prompts the user to select a network, and specifies the amount to be
+        purchased.
         Validates the amount against the available balance and prompts for the phone number.
-        Deducts the purchased amount from the account balance, generates a receipt, and updates account information.
+        Deducts the
+        purchased amount from the account balance, generates a receipt, and updates account information.
 
         Returns:
         - None
@@ -606,7 +609,7 @@ class Customer:
         self.__account.setAccountBalance(
             self.__account.getAccountBalance() - amount)
 
-        # Display successful purchase message
+        # Display a successful purchase message
         print(f"\n\n$ {amount} airtime successfully purchased!")
 
         # Prepare transaction details for receipt
@@ -634,8 +637,8 @@ class Customer:
             Retrieves and displays the transaction history for the customer.
 
             Delays for 3 seconds to simulate the retrieval process.
-            Retrieves the transaction history file based on the customer's username.
-            Prints the retrieved transaction history.
+            Retrieve the transaction history file based on the customer's username.
+            Print the retrieved transaction history.
 
             Returns:
             - None
@@ -652,7 +655,7 @@ class Customer:
         # Retrieve the username of the current customer
         transactionDetailsFileName = self.getCustomerUsername() + '.txt'
 
-        # Combine directory path and filename to create the file's complete
+        # Combine a directory path and filename to create the file's complete
         # path
         transactionDetailsFilePath = os.path.join(
             transactionDetailsDirectoryPath, transactionDetailsFileName)
@@ -678,8 +681,8 @@ class Customer:
         files and updating credentials if confirmed. It cannot be undone.
 
         Steps:
-        1. Asks the user for confirmation to close the account.
-        2. If confirmed ('y'), deletes the customer's data file ('<username>.dat').
+        1. Ask the user for confirmation to close the account.
+        2. If confirmed ('y'), delete the customer's data file ('<username>.dat').
         3. Removes the transaction history file associated with the account.
         4. Updates the list of usernames and passwords after removing the current user's credentials.
         5. Notifies the user of the successful account closure.
@@ -789,7 +792,7 @@ def openAccount():
     """
     Facilitates the creation of a new customer account in the bank system.
 
-    Prompts the user for personal information, login credentials, and creates a new customer account.
+    Prompts the user for personal information, login credentials, and create a new customer account.
 
     Returns:
     None
@@ -991,7 +994,7 @@ def main():
     while True:
         if option in ['1', '2', '3']:
             break  # Breaks loop if the entered option is valid
-        # Reprompt if input is invalid
+        # Re-prompt if input is invalid
         option = input("\nInvalid Input!\nSelect an option from 1-3: ")
 
     if option == '1':  # Case when user selects Login
@@ -1023,10 +1026,10 @@ def main():
 
         option = input("\nEnter a choice: ")  # User input for selected action
 
-        while True:  # Loop to validate selected option
+        while True:  # Loop to validate a selected option
             if option in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
                 break  # Breaks the loop if the selected option is valid
-            # Reprompt if input is invalid
+            # Re-prompt if input is invalid
             option = input("\nInvalid Input!\nSelect an option from 1-9: ")
 
         match option:
