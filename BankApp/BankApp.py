@@ -339,7 +339,7 @@ class Customer:
             f"{self.__account.getAccountBalance()}\n\nAccount Number: {self.__account.getAccountNumber()}"
         )
 
-    def Withdraw(self):
+    def withdraw(self):
         """
         Facilitates the withdrawal process for the customer.
         Requests and validates the withdrawal amount, updates the account balance,
@@ -365,13 +365,15 @@ class Customer:
         # Get transaction description from the user
         transactionDescription = input("\nEnter transaction description: ")
 
+        bankCharges = deductBankCharges(amount)
+
         # Simulate transaction processing delay
         print(f"\nPlease wait while your transaction is processing...", end="")
         sleep(2)
 
         # Update the account balance after withdrawal
         self.__account.setAccountBalance(
-            self.__account.getAccountBalance() - amount)
+            self.__account.getAccountBalance() - (amount + bankCharges))
 
         # Display a successful withdrawal message
         print(f"\n\n$ {amount} successfully withdrawn!")
@@ -380,7 +382,8 @@ class Customer:
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Withdrawal',
-            'Description': transactionDescription
+            'Description': transactionDescription,
+            'Bank Charges': bankCharges
         }
 
         # Generate receipt and print it
@@ -508,6 +511,8 @@ class Customer:
         # Prompt for transaction description
         transactionDescription = input("\nEnter Transaction Description: ")
 
+        bankCharges = deductBankCharges(amount)
+
         # Simulate processing delay
         print(f"\nPlease wait while your transaction is processing...", end="")
         sleep(2)
@@ -516,7 +521,7 @@ class Customer:
         recipient.__account.setAccountBalance(
             amount + recipient.__account.getAccountBalance())
         self.__account.setAccountBalance(
-            self.__account.getAccountBalance() - amount)
+            self.__account.getAccountBalance() - (amount + bankCharges))
 
         # Update sender's account information in a file
         with open(self.__username + '.dat', 'wb') as fileHandler:
@@ -536,7 +541,9 @@ class Customer:
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Online Transfer - Debit',
-            'Transaction Description': transactionDescription}
+            'Transaction Description': transactionDescription,
+            'Bank Charges': bankCharges
+        }
         receipt = generateReceipt(**transactionDetails)
         print(receipt)
 
@@ -547,7 +554,8 @@ class Customer:
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Online Transfer - Credit',
-            'Transaction Description': transactionDescription}
+            'Transaction Description': transactionDescription
+        }
         receipt = generateReceipt(**transactionDetails)
 
         # Write receipt to recipient's file
@@ -605,9 +613,11 @@ class Customer:
         print(f"\nPlease wait while your transaction is processing...", end="")
         sleep(2)
 
+        bankCharges = deductBankCharges(amount)
+
         # Deduct the purchased amount from the account balance
         self.__account.setAccountBalance(
-            self.__account.getAccountBalance() - amount)
+            self.__account.getAccountBalance() - (amount + bankCharges))
 
         # Display a successful purchase message
         print(f"\n\n$ {amount} airtime successfully purchased!")
@@ -617,7 +627,9 @@ class Customer:
             'Amount': amount,
             'Transaction Type': 'Airtime Purchase',
             'Network': network,
-            'Phone Number': phoneNumber}
+            'Phone Number': phoneNumber,
+            'Bank Charges': bankCharges
+        }
 
         # Generate receipt
         receipt = generateReceipt(**transactionDetails)
@@ -745,6 +757,23 @@ class Customer:
         return
 
 
+def deductBankCharges(amount):
+    """
+    Generates the bank's charges for a particular amount of money.
+    Args:
+        - amount: The amount to be transferred or withdrawn
+
+    Returns:
+        -int: The bank's charges for a particular amount of money'.
+    """
+    if amount < 5000:
+        return 10.00
+    elif 5001 <= amount <= 50000:
+        return 26.00
+    else:
+        return 50.00
+
+
 def generateReceipt(**kwargs):
     """
     Generates a transaction receipt based on the provided keyword arguments.
@@ -775,12 +804,25 @@ def generateReceipt(**kwargs):
             f"\n\t\tDate: {now.strftime('%d/%m/%Y %H:%M:%S')}\n"
             f"**************************************************************************\n"
         )
+    elif len(kwargs) == 4:
+        return (
+            f"\n***************************Transaction Receipt**************************\n"
+            f"\t\t{kwargs[1][0]}: {kwargs[1][1]}\n"  # Detail 1
+            f"\n\t\t{kwargs[2][0]}: {kwargs[2][1]}\n"  # Detail 2
+            f"\n\t\t{kwargs[0][0]}: $ {kwargs[0][1]}\n"  # Detail 3 (amount)
+            f"\n\t\t{kwargs[3][0]}: $ {kwargs[3][1]}\n"
+            f"\n\t\tStatus: Successful\n"  # Transaction status
+            # Date and time stamp
+            f"\n\t\tDate: {now.strftime('%d/%m/%Y %H:%M:%S')}\n"
+            f"**************************************************************************\n"
+        )
     return (
         f"\n***************************Transaction Receipt**************************\n"
         f"\t\t{kwargs[1][0]}: {kwargs[1][1]}\n"  # Detail 1
         f"\n\t\t{kwargs[2][0]}: {kwargs[2][1]}\n"  # Detail 2
         f"\n\t\t{kwargs[0][0]}: $ {kwargs[0][1]}\n"  # Detail 3 (amount)
         f"\n\t\t{kwargs[3][0]}: {kwargs[3][1]}\n"  # Detail 4
+        f"\n\t\t{kwargs[4][0]}: $ {kwargs[4][1]}\n"  # Detail 5
         f"\n\t\tStatus: Successful\n"  # Transaction status
         # Date and time stamp
         f"\n\t\tDate: {now.strftime('%d/%m/%Y %H:%M:%S')}\n"
@@ -1049,7 +1091,7 @@ def main():
 
             case '2':
                 # Calls the Withdraw method to take funds out of the account
-                customer.Withdraw()
+                customer.withdraw()
                 # Asks the user if they want to perform another transaction or
                 # log off
                 choice = input(
