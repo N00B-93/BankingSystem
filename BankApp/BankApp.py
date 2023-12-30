@@ -535,8 +535,7 @@ class Customer:
         transactionDetails = {
             'Amount': amount,
             'Transaction Type': 'Online Transfer - Debit',
-            'Transaction Description': transactionDescription
-        }
+            'Transaction Description': transactionDescription}
         receipt = generateReceipt(**transactionDetails)
         print(receipt)
 
