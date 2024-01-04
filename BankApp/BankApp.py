@@ -969,14 +969,18 @@ def login():
 
     username = input("\nUsername: ")
 
-    # Read usernames and passwords from their respective files
-    fileHandler1 = open("usernames.txt")
-    usernames = fileHandler1.readlines()
-
     password = pwinput("\nPassword: ", '*')
 
-    fileHandler2 = open("passwords.txt")
-    passwords = fileHandler2.readlines()
+    try:
+    # Read usernames and passwords from their respective files
+        fileHandler1 = open("usernames.txt")
+        usernames = fileHandler1.readlines()
+
+        fileHandler2 = open("passwords.txt")
+        passwords = fileHandler2.readlines()
+    except IOError as Error:
+        print("\nLogin details not Found!\nEnsure Your login Credentials are correct or Open an Account.")
+        exit(0)
 
     while True:
         # Validate user credentials
