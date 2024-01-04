@@ -978,7 +978,7 @@ def login():
 
         fileHandler2 = open("passwords.txt")
         passwords = fileHandler2.readlines()
-    except IOError as Error:
+    except IOError:
         print("\nLogin details not Found!\nEnsure Your login Credentials are correct or Open an Account.")
         exit(0)
 
