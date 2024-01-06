@@ -857,6 +857,9 @@ def openAccount():
     if response == 'n':
         print("\nYou can't open an Account if you're less than 16 years old!\n")
         exit(0)
+    elif response != 'y':
+        print("\nInvalid Input, Enter a valid Response.")
+        exit(0)
 
     print("\t\t\n\nLogin Credentials")
     username = input("\nUsername: ")
