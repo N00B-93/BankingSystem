@@ -354,13 +354,20 @@ class Customer:
         # Prompt for the withdrawal amount
         amount = eval(input("\nEnter Amount to be withdrawn: $ "))
 
+        # Variable used to controll the number of times a user can try to withdraw funds
+        tries = 0
+
         # Validate the withdrawal amount
         while True:
-            if amount <= self.__account.getAccountBalance():
+            if amount <= self.__account.getAccountBalance() and amount != 0:
                 break
-            else:
+            elif self.__account.getAccountBalance() < amount or amount == 0:
+                if tries == 2:
+                    print("\nInsufficient Balance or Invalid amount.\nEnter a valid amount or Deposit cash then try again.", sep="")
+                    exit(0)
                 print("\nInvalid Amount, Try again.")
                 amount = eval(input("\nEnter Amount to be withdrawn: $ "))
+            tries += 1
 
         # Get transaction description from the user
         transactionDescription = input("\nEnter transaction description: ")
