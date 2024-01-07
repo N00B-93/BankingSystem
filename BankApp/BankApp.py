@@ -416,12 +416,30 @@ class Customer:
         Returns:
         - None
         """
+        # Initializes the variable tries
+        tries = 0
 
         # Display current balance
         print(f"\nYour current balance is: $ {self.__account.getAccountBalance()}")
 
-        # Prompt for deposit amount
-        amount = eval(input("\nEnter Amount to be deposited: $ "))
+        # while loop that check validates uesr input and terminates the program after three unsuccessful tries.
+        while tries != 3:
+            try:
+                # Prompt for deposit amount
+                amount = eval(input("\nEnter Amount to be deposited: $ "))
+                # Checks if amount entered is 0.
+                if amount == 0:
+                    print("\nInvalid amount, You can deposit $ 0.0")
+            except NameError:
+                print("\nInvalid input, try again")
+            except Exception:
+                print("\nInvalid input, try again")
+            tries += 1
+
+        # Terminates the program if the user enters invalid input thrice.
+        if tries == 3:
+            print("\nYour account has been Temporarily suspended, Try again Later.")
+            exit(0)
 
         # Prompt for transaction description
         transactionDescription = input("\nEnter transaction description: ")
