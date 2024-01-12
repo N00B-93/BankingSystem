@@ -354,7 +354,7 @@ class Customer:
         # Prompt for the withdrawal amount
         amount = eval(input("\nEnter Amount to be withdrawn: $ "))
 
-        # Variable used to controll the number of times a user can try to withdraw funds
+        # Variable used to control the number of times a user can try to withdraw funds
         tries = 0
 
         # Validate the withdrawal amount
@@ -623,14 +623,28 @@ class Customer:
             case '3':
                 network = 'GLO'
 
-        # Prompt for the amount to be purchased
-        amount = eval(input("\nEnter Amount to be purchased: $ "))
+        # Variable used to tracks the number of times a customer tries to purcahse airtime.
+        tries = 0
 
         # Validate amount against account balance
-        while amount > self.__account.getAccountBalance():
-            print("\nInvalid Amount, Try again.")
-            amount = eval(input("\nEnter Amount to be purchased: $ "))
-
+        while True:
+            try:
+                # Prompt for the amount to be purchased
+                amount = float(input("\nEnter Amount to be purchased: $ "))
+                if tries == 2:
+                    print("\nYour Account has been temporarily suspended, Try again later.")
+                    exit(0)
+                if amount > self.__account.getAccountBalance() or amount == 0.0:
+                    print("\nInvalid Amount, Try again.")
+                else:
+                    break
+            except ValueError:
+                if tries == 2:
+                    print("\nYour Account has been temporarily suspended, Try again later.")
+                    exit(0)
+                print("\nInvalid amount, Try again.")
+            tries += 1
+                
         # Prompt for phone number
         phoneNumber = input("\nEnter Phone Number: ")
 
