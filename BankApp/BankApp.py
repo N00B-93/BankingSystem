@@ -430,6 +430,8 @@ class Customer:
                 # Checks if amount entered is 0.
                 if amount == 0:
                     print("\nInvalid amount, You can deposit $ 0.0")
+                elif amount > 0:
+                    break
             except NameError:
                 print("\nInvalid input, try again")
             except Exception:
