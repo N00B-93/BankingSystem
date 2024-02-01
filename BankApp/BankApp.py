@@ -1004,10 +1004,6 @@ def login():
     Returns:
     tuple: A tuple containing the username and password if the login is successful.
     """
-
-    print("\n\n\t\tWelcome to N00B'S BANK")
-    print("\t\t(The One Customer Bank!)")
-
     print("\n\n\t\tLogin to your Account.")
     tries = 0
 
@@ -1074,6 +1070,9 @@ def writeReceipt(receipt, fileName):
 
 
 def main():
+    print("\n\n\t\tWelcome to N00B'S BANK")
+    print("\t\t(The One Customer Bank!)")
+
     password = user = ''  # Initializing password and user variables
 
     # Prompts the user to select a choice.
