@@ -363,7 +363,8 @@ class Customer:
                 break
             elif self.__account.getAccountBalance() < amount or amount == 0:
                 if tries == 2:
-                    print("\nInsufficient Balance or Invalid amount.\nEnter a valid amount or Deposit cash then try again.", sep="")
+                    print("\nInsufficient Balance or Invalid amount.\nEnter a valid amount or Deposit cash then try "
+                          "again.", sep="")
                     exit(0)
                 print("\nInvalid Amount, Try again.")
                 amount = eval(input("\nEnter Amount to be withdrawn: $ "))
@@ -644,7 +645,7 @@ class Customer:
                     exit(0)
                 print("\nInvalid amount, Try again.")
             tries += 1
-                
+
         # Prompt for phone number
         phoneNumber = input("\nEnter Phone Number: ")
 
@@ -803,7 +804,7 @@ def deductBankCharges(amount):
         - amount: The amount to be transferred or withdrawn
 
     Returns:
-        -int: The bank's charges for a particular amount of money'.
+        -int: The bank's charges for a particular amount of money.
     """
     if amount < 5000:
         return 10.00
@@ -1014,7 +1015,7 @@ def login():
     password = pwinput("\nPassword: ", '*')
 
     try:
-    # Read usernames and passwords from their respective files
+        # Read usernames and passwords from their respective files
         fileHandler1 = open("usernames.txt")
         usernames = fileHandler1.readlines()
 
