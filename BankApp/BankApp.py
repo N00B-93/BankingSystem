@@ -431,6 +431,8 @@ class Customer:
                 # Checks if amount entered is 0.
                 if amount == 0:
                     print("\nInvalid amount, You can deposit $ 0.0")
+                elif amount > 0:
+                    break
             except NameError:
                 print("\nInvalid input, try again")
             except Exception:
@@ -1003,10 +1005,6 @@ def login():
     Returns:
     tuple: A tuple containing the username and password if the login is successful.
     """
-
-    print("\n\n\t\tWelcome to N00B'S BANK")
-    print("\t\t(The One Customer Bank!)")
-
     print("\n\n\t\tLogin to your Account.")
     tries = 0
 
@@ -1073,6 +1071,9 @@ def writeReceipt(receipt, fileName):
 
 
 def main():
+    print("\n\n\t\tWelcome to N00B'S BANK")
+    print("\t\t(The One Customer Bank!)")
+
     password = user = ''  # Initializing password and user variables
 
     # Prompts the user to select a choice.
@@ -1109,9 +1110,28 @@ def main():
     while True:  # Main menu loop
         print("\nMain Menu")
 
-        print(
+        """print(
             '\n1. Deposit Funds\n2. Withdraw Funds\n3. Online Transfer\n4. Buy Airtime\n5. Print Account Details\n6. '
-            'Check Balance\n7. Print Transaction History\n8. Close Account\n9. Exit')
+            'Check Balance\n7. Print Transaction History\n8. Close Account\n9. Exit')"""
+        print("  ┌───────────────────┐  ╭───────────────────────╮           ")
+        print("  │  ╭┼┼╮            │  │ ▶︎ 1 • Deposit Funds  │           ")
+        print("  │  ╰┼┼╮            │  ├───────────────────────┴─────╮     ")
+        print("  │  ╰┼┼╯            │  │ ▶︎ 2 • Withdraw Funds   │     ")
+        print("  │                  │  ├────────────────────────────┬╯     ")
+        print("  │  N 0 0 B         │  │ ▶︎ 3 • Transfer Funds  │      ")
+        print("  │  Ｂ Ａ Ｎ Ｋ      │  ├───────────────────────┬────╯      ")
+        print("  │                  │  │ ▶︎ 4 • Buy Airtime  │           ")
+        print("  │                  │  ├──────────────────────┬╯           ")
+        print("  │                  │  │ ▶︎ 5 • Print Account Details │            ")
+        print("  │                  │  ├──────────────────────┴────╮       ")
+        print("  │                  │  │ ▶︎ 6 • Check Balance │       ")
+        print("  │                  │  ├───────────────────────────┴╮      ")
+        print("  │ ║│┃║║│┃║│║┃│    │  │ ▶︎ 7 • Print Transaction History│      ")
+        print("  │ ║│┃║║│┃║│║┃│    │  ├────────────────────┬───────╯      ")
+        print("  │                  │  │ ▶︎ 8 • Close Account    │              ")
+        print("  │                  │  ├──────────────────────┴────╮       ")
+        print("  │                  │  │ ▶︎ 9 • Exit             │              ")
+        print("  └───────────────────┘  ╰────────────────────╯              ")
 
         option = input("\nEnter a choice: ")  # User input for selected action
 
