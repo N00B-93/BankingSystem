@@ -2,3 +2,4 @@ Customers_Transaction_Details
 venv
 *.dat
 *.txt
+.idea
